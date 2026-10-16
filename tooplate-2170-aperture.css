@@ -1,0 +1,1420 @@
+/*
+
+    Tooplate 2170 Aperture
+
+    https://www.tooplate.com/view/2170-aperture
+
+    Free HTML CSS Template
+
+*/
+
+/* ========================================================
+   APERTURE — Frame-Centric Visual Lookbook
+   A gallery where the UI is the frame, and the art breathes.
+   ======================================================== */
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --frame: 40px;
+  --frame-mobile: 16px;
+  --charcoal: #0D0D0D;
+  --charcoal-soft: #1A1A1A;
+  --white: #FFFFFF;
+  --white-dim: rgba(255, 255, 255, 0.35);
+  --white-ghost: rgba(255, 255, 255, 0.12);
+  --line: 0.5px;
+  --serif: 'Cormorant Garamond', 'Georgia', serif;
+  --mono: 'Roboto Mono', 'Courier New', monospace;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--white-ghost) transparent;
+}
+
+body {
+  background: var(--charcoal);
+  color: var(--white);
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Selection */
+::selection {
+  background: var(--white);
+  color: var(--charcoal);
+}
+
+/* ========================================================
+   THE FRAME — Persistent viewport border housing all UI
+   ======================================================== */
+
+.frame {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.frame__border {
+  position: absolute;
+  inset: 0;
+  border: var(--frame) solid var(--charcoal);
+  pointer-events: none;
+}
+
+/* Inner rule line */
+.frame__border::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: var(--line) solid var(--white-ghost);
+}
+
+/* Corner accents — thin crosshairs */
+.frame__corner {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+}
+.frame__corner::before,
+.frame__corner::after {
+  content: '';
+  position: absolute;
+  background: var(--white-dim);
+}
+.frame__corner::before {
+  width: 1px;
+  height: 100%;
+  left: 50%;
+}
+.frame__corner::after {
+  width: 100%;
+  height: 1px;
+  top: 50%;
+}
+.frame__corner--tl { top: 10px; left: 10px; }
+.frame__corner--tr { top: 10px; right: 10px; }
+.frame__corner--bl { bottom: 10px; left: 10px; }
+.frame__corner--br { bottom: 10px; right: 10px; }
+
+/* ========================================================
+   FRAME UI — Logo, Nav, Meta (all inside the frame gutter)
+   ======================================================== */
+
+.frame__logo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--frame);
+  height: var(--frame);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 110;
+  pointer-events: auto;
+}
+
+.frame__logo a {
+  font-family: var(--serif);
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--white);
+  text-decoration: none;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* Wordmark across the top */
+.frame__wordmark {
+  position: fixed;
+  top: 0;
+  left: var(--frame);
+  right: var(--frame);
+  height: var(--frame);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 110;
+  pointer-events: auto;
+}
+
+.frame__wordmark span {
+  font-family: var(--serif);
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  color: var(--white);
+  opacity: 0.7;
+}
+
+/* Left sidebar — project counter */
+.frame__sidebar-left {
+  position: fixed;
+  top: var(--frame);
+  left: 0;
+  width: var(--frame);
+  bottom: var(--frame);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 110;
+  pointer-events: auto;
+}
+
+.frame__counter {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--white-dim);
+  white-space: nowrap;
+}
+
+.frame__counter .current {
+  color: var(--white);
+  font-weight: 400;
+}
+
+/* Right sidebar — Navigation */
+.frame__sidebar-right {
+  position: fixed;
+  top: var(--frame);
+  right: 0;
+  width: var(--frame);
+  bottom: var(--frame);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 110;
+  pointer-events: auto;
+}
+
+.frame__nav {
+  list-style: none;
+  writing-mode: vertical-rl;
+  display: flex;
+  gap: 28px;
+}
+
+.frame__nav li a {
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--white-dim);
+  text-decoration: none;
+  position: relative;
+  transition: color 0.4s var(--ease-in-out);
+  padding: 2px 0;
+}
+
+.frame__nav li a::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--white);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.5s var(--ease-out-expo);
+}
+
+.frame__nav li a:hover {
+  color: var(--white);
+}
+
+.frame__nav li a:hover::after {
+  transform: scaleY(1);
+}
+
+/* Bottom frame — Footer */
+.frame__bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--frame);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 calc(var(--frame) + 12px);
+  z-index: 110;
+  pointer-events: auto;
+}
+
+.frame__bottom::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: var(--frame);
+  right: var(--frame);
+  height: var(--line);
+  background: var(--white-ghost);
+}
+
+.frame__credit {
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--white-dim);
+}
+
+.frame__credit a {
+  color: var(--white-dim);
+  text-decoration: none;
+  transition: color 0.3s var(--ease-in-out);
+}
+
+.frame__credit a:hover {
+  color: var(--white);
+}
+
+.frame__social {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+
+.frame__social a {
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--white-dim);
+  text-decoration: none;
+  position: relative;
+  transition: color 0.4s var(--ease-in-out);
+}
+
+.frame__social a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background: var(--white);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.45s var(--ease-out-expo);
+}
+
+.frame__social a:hover {
+  color: var(--white);
+}
+
+.frame__social a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ========================================================
+   MAIN CONTENT — The Lookbook
+   ======================================================== */
+
+.lookbook {
+  padding: var(--frame);
+}
+
+/* Hero / Opening */
+.lookbook__hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.lookbook__hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.lookbook__hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.25;
+  filter: grayscale(30%);
+}
+
+.lookbook__hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.lookbook__title {
+  font-family: var(--serif);
+  font-size: clamp(48px, 10vw, 140px);
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 0.9;
+  margin-bottom: 24px;
+}
+
+.lookbook__title em {
+  font-style: italic;
+  font-weight: 300;
+  display: block;
+  font-size: 0.55em;
+  letter-spacing: 0.25em;
+  opacity: 0.6;
+  margin-top: 8px;
+}
+
+.lookbook__subtitle {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--white-dim);
+  margin-top: 12px;
+}
+
+.lookbook__scroll-cue {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  z-index: 1;
+}
+
+.lookbook__scroll-cue span {
+  font-size: 8px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--white-dim);
+}
+
+.lookbook__scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--white-dim), transparent);
+  animation: scrollPulse 2s var(--ease-in-out) infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(0.6); }
+  50% { opacity: 1; transform: scaleY(1); }
+}
+
+/* Lookbook Plates (individual image sections) */
+.lookbook__plate {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  margin: 2px 0;
+}
+
+.lookbook__plate-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(0.92);
+  opacity: 0;
+  transition:
+    transform 1.4s var(--ease-out-expo),
+    opacity 1.2s var(--ease-in-out);
+  filter: brightness(0.85);
+}
+
+.lookbook__plate.is-visible .lookbook__plate-image {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* Plate metadata overlay */
+.lookbook__plate-meta {
+  position: absolute;
+  bottom: 32px;
+  left: 32px;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 0.8s var(--ease-in-out) 0.4s,
+    transform 0.8s var(--ease-out-expo) 0.4s;
+}
+
+.lookbook__plate.is-visible .lookbook__plate-meta {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.lookbook__plate-number {
+  font-family: var(--serif);
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  color: var(--white-dim);
+  margin-bottom: 6px;
+}
+
+.lookbook__plate-title {
+  font-family: var(--serif);
+  font-size: clamp(28px, 4vw, 52px);
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+
+.lookbook__plate-caption {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--white-dim);
+  max-width: 320px;
+}
+
+/* Right-aligned metadata variation */
+.lookbook__plate--right .lookbook__plate-meta {
+  left: auto;
+  right: 32px;
+  text-align: right;
+}
+
+.lookbook__plate--right .lookbook__plate-caption {
+  margin-left: auto;
+}
+
+/* Interstitial text section */
+.lookbook__interstitial {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.lookbook__interstitial-inner {
+  max-width: 600px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 1s var(--ease-in-out),
+    transform 1s var(--ease-out-expo);
+}
+
+.lookbook__interstitial.is-visible .lookbook__interstitial-inner {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.lookbook__interstitial blockquote {
+  font-family: var(--serif);
+  font-size: clamp(22px, 3.5vw, 38px);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: var(--white);
+  margin-bottom: 24px;
+}
+
+.lookbook__interstitial cite {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--white-dim);
+  font-style: normal;
+}
+
+/* Diptych — two images side by side */
+.lookbook__diptych {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  height: 70vh;
+  margin: 2px 0;
+}
+
+.lookbook__diptych-panel {
+  overflow: hidden;
+  position: relative;
+}
+
+.lookbook__diptych-panel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(0.94);
+  opacity: 0;
+  transition:
+    transform 1.4s var(--ease-out-expo),
+    opacity 1.2s var(--ease-in-out);
+  filter: brightness(0.85);
+}
+
+.lookbook__diptych.is-visible .lookbook__diptych-panel img {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.lookbook__diptych.is-visible .lookbook__diptych-panel:nth-child(2) img {
+  transition-delay: 0.15s;
+}
+
+.lookbook__diptych-label {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--white-dim);
+}
+
+/* Journal section — Editorial Split Panel */
+.lookbook__journal {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 100px 20px;
+}
+
+.lookbook__journal-inner {
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 1s var(--ease-in-out),
+    transform 1s var(--ease-out-expo);
+}
+
+.lookbook__journal.is-visible .lookbook__journal-inner {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.lookbook__journal-heading {
+  font-family: var(--serif);
+  font-size: clamp(28px, 5vw, 48px);
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.lookbook__journal-spread {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  min-height: 420px;
+  position: relative;
+}
+
+/* Left column — entry list */
+.lookbook__journal-list {
+  list-style: none;
+  border-right: var(--line) solid var(--white-ghost);
+  padding-right: 40px;
+}
+
+.lookbook__journal-entry {
+  border-top: var(--line) solid var(--white-ghost);
+  padding: 24px 0;
+  cursor: pointer;
+  transition: background 0.3s var(--ease-in-out);
+  position: relative;
+}
+
+.lookbook__journal-entry:last-child {
+  border-bottom: var(--line) solid var(--white-ghost);
+}
+
+.lookbook__journal-entry:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.lookbook__journal-entry.is-active {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* Active indicator — thin vertical bar */
+.lookbook__journal-entry::after {
+  content: '';
+  position: absolute;
+  right: -1px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--white);
+  transform: scaleY(0);
+  transition: transform 0.5s var(--ease-out-expo);
+}
+
+.lookbook__journal-entry.is-active::after {
+  transform: scaleY(1);
+}
+
+.lookbook__journal-entry-header {
+  display: grid;
+  grid-template-columns: 80px 1fr auto;
+  align-items: baseline;
+  gap: 20px;
+}
+
+.lookbook__journal-date {
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  color: var(--white-dim);
+  white-space: nowrap;
+}
+
+.lookbook__journal-title {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  color: var(--white);
+  transition: color 0.3s var(--ease-in-out);
+}
+
+.lookbook__journal-entry:hover .lookbook__journal-title {
+  color: var(--white);
+}
+
+.lookbook__journal-entry:not(.is-active) .lookbook__journal-title {
+  color: var(--white-dim);
+}
+
+.lookbook__journal-tag {
+  font-size: 8px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--white-dim);
+  border: var(--line) solid var(--white-ghost);
+  padding: 4px 10px;
+  white-space: nowrap;
+}
+
+/* Right column — reading panel */
+.lookbook__journal-panel {
+  padding-left: 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.lookbook__journal-panel-empty {
+  position: absolute;
+  top: 50%;
+  left: 40px;
+  right: 0;
+  transform: translateY(-50%);
+  text-align: center;
+  transition: opacity 0.4s var(--ease-in-out);
+}
+
+.lookbook__journal-panel-empty span {
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--white-ghost);
+}
+
+.lookbook__journal-panel.has-content .lookbook__journal-panel-empty {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.lookbook__journal-content {
+  position: absolute;
+  top: 0;
+  left: 40px;
+  right: 0;
+  opacity: 0;
+  transform: translateX(20px);
+  transition:
+    opacity 0.45s var(--ease-in-out),
+    transform 0.55s var(--ease-out-expo);
+  pointer-events: none;
+}
+
+.lookbook__journal-content.is-exiting {
+  opacity: 0;
+  transform: translateX(-10px);
+  transition:
+    opacity 0.3s var(--ease-in-out),
+    transform 0.35s var(--ease-in-out);
+}
+
+.lookbook__journal-content.is-active {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.lookbook__journal-content-tag {
+  font-size: 8px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--white-dim);
+  margin-bottom: 16px;
+}
+
+.lookbook__journal-content-title {
+  font-family: var(--serif);
+  font-size: clamp(24px, 3vw, 34px);
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: 0.03em;
+  line-height: 1.35;
+  margin-bottom: 24px;
+}
+
+.lookbook__journal-content-body {
+  font-family: var(--serif);
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.85;
+  color: rgba(255, 255, 255, 0.65);
+  letter-spacing: 0.01em;
+  margin-bottom: 28px;
+}
+
+.lookbook__journal-content-body p + p {
+  margin-top: 16px;
+}
+
+.lookbook__journal-content-footer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-top: 20px;
+  border-top: var(--line) solid var(--white-ghost);
+}
+
+.lookbook__journal-read-more {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--white-dim);
+  text-decoration: none;
+  position: relative;
+  transition: color 0.3s var(--ease-in-out);
+}
+
+.lookbook__journal-read-more::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background: var(--white);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.45s var(--ease-out-expo);
+}
+
+.lookbook__journal-read-more:hover {
+  color: var(--white);
+}
+
+.lookbook__journal-read-more:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.lookbook__journal-read-time {
+  font-size: 8px;
+  letter-spacing: 0.15em;
+  color: var(--white-ghost);
+}
+
+/* Close button for panel */
+.lookbook__journal-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: var(--line) solid var(--white-ghost);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s var(--ease-in-out), border-color 0.3s ease;
+  z-index: 2;
+}
+
+.lookbook__journal-close::before,
+.lookbook__journal-close::after {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 1px;
+  background: var(--white-dim);
+  transition: background 0.3s ease;
+}
+
+.lookbook__journal-close::before { transform: rotate(45deg); }
+.lookbook__journal-close::after  { transform: rotate(-45deg); }
+
+.lookbook__journal-close:hover {
+  border-color: var(--white-dim);
+}
+
+.lookbook__journal-close:hover::before,
+.lookbook__journal-close:hover::after {
+  background: var(--white);
+}
+
+.lookbook__journal-panel.has-content .lookbook__journal-close {
+  opacity: 1;
+}
+
+/* Contact / Closing section */
+.lookbook__close {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.lookbook__close-heading,
+.lookbook__close-text,
+.contact-form {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.9s var(--ease-in-out),
+    transform 0.9s var(--ease-out-expo);
+}
+
+.lookbook__close.is-visible .lookbook__close-heading {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.lookbook__close.is-visible .lookbook__close-text {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.1s;
+}
+
+.lookbook__close.is-visible .contact-form {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.2s;
+}
+
+.lookbook__close-heading {
+  font-family: var(--serif);
+  font-size: clamp(36px, 7vw, 90px);
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1;
+  margin-bottom: 32px;
+}
+
+.lookbook__close-text {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--white-dim);
+  margin-bottom: 48px;
+  max-width: 400px;
+  line-height: 2;
+}
+
+/* Contact Form */
+.contact-form {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.contact-form__group {
+  position: relative;
+  border-top: var(--line) solid var(--white-ghost);
+}
+
+.contact-form__group:last-of-type {
+  border-bottom: var(--line) solid var(--white-ghost);
+}
+
+.contact-form__label {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--white-dim);
+  pointer-events: none;
+  transition: all 0.4s var(--ease-out-expo);
+}
+
+.contact-form__input,
+.contact-form__textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--white);
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 300;
+  letter-spacing: 0.03em;
+  padding: 16px 0;
+  padding-left: 80px;
+  caret-color: var(--white-dim);
+}
+
+.contact-form__textarea {
+  resize: none;
+  min-height: 100px;
+  line-height: 1.6;
+}
+
+.contact-form__input::placeholder,
+.contact-form__textarea::placeholder {
+  color: var(--white-ghost);
+  font-family: var(--serif);
+  font-weight: 300;
+  font-style: italic;
+}
+
+.contact-form__input:focus,
+.contact-form__textarea:focus {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.contact-form__group:has(:focus) {
+  border-top-color: var(--white-dim);
+}
+
+.contact-form__group:has(:focus) .contact-form__label {
+  color: var(--white);
+}
+
+.contact-form__submit {
+  align-self: flex-start;
+  margin-top: 36px;
+  font-family: var(--serif);
+  font-size: 14px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--white);
+  background: transparent;
+  padding: 16px 48px;
+  border: var(--line) solid var(--white-dim);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.5s var(--ease-in-out), color 0.4s var(--ease-in-out);
+}
+
+.contact-form__submit::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--white);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.6s var(--ease-out-expo);
+  z-index: 0;
+}
+
+.contact-form__submit span {
+  position: relative;
+  z-index: 1;
+}
+
+.contact-form__submit:hover {
+  color: var(--charcoal);
+  border-color: var(--white);
+}
+
+.contact-form__submit:hover::before {
+  transform: scaleX(1);
+}
+
+/* ========================================================
+   MOBILE — Bottom-docked camera-style tab bar
+   ======================================================== */
+
+.mobile-nav {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --frame: var(--frame-mobile);
+  }
+
+  .frame__border {
+    border-width: var(--frame-mobile);
+    border-bottom-width: 60px;
+  }
+
+  .frame__border::after {
+    border-bottom-width: 0;
+  }
+
+  .frame__sidebar-left,
+  .frame__sidebar-right {
+    display: none;
+  }
+
+  .frame__wordmark span {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+  }
+
+  .frame__logo {
+    width: var(--frame-mobile);
+    height: var(--frame-mobile);
+  }
+
+  .frame__logo a {
+    font-size: 10px;
+  }
+
+  .frame__bottom {
+    height: 60px;
+    padding: 0 24px;
+    flex-direction: row;
+    justify-content: center;
+    gap: 0;
+  }
+
+  .frame__bottom::before {
+    left: var(--frame-mobile);
+    right: var(--frame-mobile);
+  }
+
+  .frame__credit,
+  .frame__social {
+    display: none;
+  }
+
+  /* Mobile nav — camera-style bottom dock */
+  .mobile-nav {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    z-index: 120;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 20px;
+    background: var(--charcoal);
+  }
+
+  .mobile-nav::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: var(--frame-mobile);
+    right: var(--frame-mobile);
+    height: var(--line);
+    background: var(--white-ghost);
+  }
+
+  .mobile-nav a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    text-decoration: none;
+    color: var(--white-dim);
+    transition: color 0.3s ease;
+    padding: 8px;
+  }
+
+  .mobile-nav a:hover,
+  .mobile-nav a.active {
+    color: var(--white);
+  }
+
+  .mobile-nav__icon {
+    width: 18px;
+    height: 18px;
+    position: relative;
+  }
+
+  /* Minimal geometric icons */
+  .mobile-nav__icon--grid::before,
+  .mobile-nav__icon--grid::after {
+    content: '';
+    position: absolute;
+  }
+  .mobile-nav__icon--grid {
+    border: var(--line) solid currentColor;
+    border-radius: 1px;
+  }
+  .mobile-nav__icon--grid::before {
+    width: var(--line);
+    height: 100%;
+    background: currentColor;
+    left: 50%;
+    top: 0;
+  }
+  .mobile-nav__icon--grid::after {
+    width: 100%;
+    height: var(--line);
+    background: currentColor;
+    top: 50%;
+    left: 0;
+  }
+
+  .mobile-nav__icon--lens {
+    border: var(--line) solid currentColor;
+    border-radius: 50%;
+  }
+  .mobile-nav__icon--lens::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border: var(--line) solid currentColor;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .mobile-nav__icon--info {
+    border: var(--line) solid currentColor;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .mobile-nav__icon--info::after {
+    content: 'i';
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 12px;
+    color: currentColor;
+    line-height: 1;
+  }
+
+  .mobile-nav__icon--mail {
+    border: var(--line) solid currentColor;
+    border-radius: 1px;
+    position: relative;
+  }
+  .mobile-nav__icon--mail::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    height: 6px;
+    border-left: var(--line) solid currentColor;
+    border-right: var(--line) solid currentColor;
+    transform: perspective(10px) rotateX(4deg);
+    border-bottom: var(--line) solid currentColor;
+  }
+
+  .mobile-nav__label {
+    font-size: 7px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .lookbook {
+    padding: var(--frame-mobile);
+    padding-bottom: 60px;
+  }
+
+  .lookbook__plate-meta {
+    bottom: 20px;
+    left: 20px;
+  }
+
+  .lookbook__plate--right .lookbook__plate-meta {
+    right: 20px;
+  }
+
+  .lookbook__diptych {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  .lookbook__diptych-panel {
+    height: 50vh;
+  }
+
+  .frame__corner {
+    display: none;
+  }
+
+  .lookbook__journal-spread {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .lookbook__journal-list {
+    border-right: none;
+    padding-right: 0;
+  }
+
+  .lookbook__journal-entry-header {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .lookbook__journal-date {
+    order: -1;
+  }
+
+  .lookbook__journal-tag {
+    justify-self: start;
+  }
+
+  .lookbook__journal-entry::after {
+    display: none;
+  }
+
+  /* Panel becomes a full-width overlay on mobile */
+  .lookbook__journal-panel {
+    position: fixed;
+    inset: 0;
+    background: var(--charcoal);
+    z-index: 200;
+    padding: 60px 24px 24px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    transform: translateY(100%);
+    transition: transform 0.6s var(--ease-out-expo);
+  }
+
+  .lookbook__journal-panel.has-content {
+    transform: translateY(0);
+  }
+
+  .lookbook__journal-panel-empty {
+    display: none;
+  }
+
+  .lookbook__journal-content {
+    position: absolute;
+    top: 0;
+    left: 24px;
+    right: 24px;
+  }
+
+  .lookbook__journal-content.is-active {
+    position: relative;
+    left: 0;
+    right: 0;
+  }
+
+  .lookbook__journal-close {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    opacity: 1;
+    z-index: 210;
+  }
+
+  .contact-form__input,
+  .contact-form__textarea {
+    padding-left: 0;
+    padding-top: 32px;
+    font-size: 16px;
+  }
+
+  .contact-form__label {
+    top: 10px;
+  }
+
+  .contact-form__submit {
+    align-self: stretch;
+    text-align: center;
+  }
+}
+
+/* ========================================================
+   LOAD ANIMATION — Staggered reveal
+   ======================================================== */
+
+.frame__border,
+.frame__logo,
+.frame__wordmark,
+.frame__sidebar-left,
+.frame__sidebar-right,
+.frame__bottom,
+.lookbook__hero-content,
+.lookbook__scroll-cue {
+  opacity: 0;
+  animation: fadeIn 1.2s var(--ease-out-expo) forwards;
+}
+
+.frame__border         { animation-delay: 0s; }
+.frame__logo           { animation-delay: 0.2s; }
+.frame__wordmark       { animation-delay: 0.3s; }
+.frame__sidebar-left   { animation-delay: 0.5s; }
+.frame__sidebar-right  { animation-delay: 0.6s; }
+.frame__bottom         { animation-delay: 0.7s; }
+.lookbook__hero-content{ animation-delay: 0.9s; }
+.lookbook__scroll-cue  { animation-delay: 1.4s; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Subtle grain overlay on the frame */
+.frame__border::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 200;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px;
+}

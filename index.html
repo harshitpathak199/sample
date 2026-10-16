@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<!--
+
+    Tooplate 2170 Aperture
+
+    https://www.tooplate.com/view/2170-aperture
+
+    Free HTML CSS Template
+
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aperture — Visual Lookbook</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Roboto+Mono:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="tooplate-2170-aperture.css">
+</head>
+<body>
+
+  <!-- ============================================
+       THE FRAME — Persistent UI Border
+       ============================================ -->
+  <div class="frame" aria-hidden="true">
+    <div class="frame__border"></div>
+    <div class="frame__corner frame__corner--tr"></div>
+    <div class="frame__corner frame__corner--bl"></div>
+    <div class="frame__corner frame__corner--br"></div>
+  </div>
+
+  <!-- Logo -->
+  <header class="frame__logo">
+    <a href="#" aria-label="Aperture Home">A</a>
+  </header>
+
+  <!-- Wordmark -->
+  <div class="frame__wordmark">
+    <span>Aperture</span>
+  </div>
+
+  <!-- Left sidebar — Counter -->
+  <aside class="frame__sidebar-left">
+    <div class="frame__counter">
+      <span class="current" id="plateCounter">01</span> / 06 — Collection
+    </div>
+  </aside>
+
+  <!-- Right sidebar — Navigation -->
+  <nav class="frame__sidebar-right" aria-label="Main navigation">
+    <ul class="frame__nav">
+      <li><a href="#lookbook">Lookbook</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#journal">Journal</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Bottom frame — Footer -->
+  <footer class="frame__bottom">
+    <span class="frame__credit">&copy; 2026 — Aperture Visual &middot; <a href="https://www.tooplate.com" rel="nofollow" target="_blank">Tooplate</a></span>
+    <ul class="frame__social">
+      <li><a href="#">Instagram</a></li>
+      <li><a href="#">Behance</a></li>
+      <li><a href="#">Vimeo</a></li>
+    </ul>
+  </footer>
+
+  <!-- Mobile bottom nav -->
+  <nav class="mobile-nav" aria-label="Mobile navigation">
+    <a href="#lookbook" class="active">
+      <span class="mobile-nav__icon mobile-nav__icon--grid"></span>
+      <span class="mobile-nav__label">Work</span>
+    </a>
+    <a href="#about">
+      <span class="mobile-nav__icon mobile-nav__icon--lens"></span>
+      <span class="mobile-nav__label">Lens</span>
+    </a>
+    <a href="#journal">
+      <span class="mobile-nav__icon mobile-nav__icon--info"></span>
+      <span class="mobile-nav__label">Journal</span>
+    </a>
+    <a href="#contact">
+      <span class="mobile-nav__icon mobile-nav__icon--mail"></span>
+      <span class="mobile-nav__label">Reach</span>
+    </a>
+  </nav>
+
+  <!-- ============================================
+       MAIN CONTENT — The Lookbook
+       ============================================ -->
+  <main class="lookbook" id="lookbook">
+
+    <!-- Hero -->
+    <section class="lookbook__hero">
+      <div class="lookbook__hero-bg">
+        <img src="images/aperture-camera.jpg" alt="" loading="eager">
+      </div>
+      <div class="lookbook__hero-content">
+        <h1 class="lookbook__title">
+          Silent
+          <em>Volumes</em>
+        </h1>
+        <p class="lookbook__subtitle">Spring / Summer — 2026 Collection</p>
+      </div>
+      <div class="lookbook__scroll-cue">
+        <span>Scroll</span>
+        <div class="lookbook__scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- Plate 01 -->
+    <section class="lookbook__plate" data-plate="01">
+      <img class="lookbook__plate-image"
+           src="images/architectural-interior.jpg"
+           alt="Architectural interior with natural light flooding through floor-to-ceiling windows"
+           loading="lazy">
+      <div class="lookbook__plate-meta">
+        <div class="lookbook__plate-number">01</div>
+        <h2 class="lookbook__plate-title">The Atrium</h2>
+        <p class="lookbook__plate-caption">Where light becomes material — an exercise in controlled absence.</p>
+      </div>
+    </section>
+
+    <!-- Plate 02 -->
+    <section class="lookbook__plate lookbook__plate--right" data-plate="02">
+      <img class="lookbook__plate-image"
+           src="images/minimalist-interior.jpg"
+           alt="Minimalist interior space with sculptural furniture"
+           loading="lazy">
+      <div class="lookbook__plate-meta">
+        <div class="lookbook__plate-number">02</div>
+        <h2 class="lookbook__plate-title">Still Form</h2>
+        <p class="lookbook__plate-caption">Every surface a decision. Every shadow, intentional.</p>
+      </div>
+    </section>
+
+    <!-- Interstitial quote -->
+    <section class="lookbook__interstitial" id="about">
+      <div class="lookbook__interstitial-inner">
+        <blockquote>&ldquo;Architecture is the learned game, correct and magnificent, of forms assembled in the light.&rdquo;</blockquote>
+        <cite>Le Corbusier</cite>
+      </div>
+    </section>
+
+    <!-- Plate 03 -->
+    <section class="lookbook__plate" data-plate="03">
+      <img class="lookbook__plate-image"
+           src="images/contemporary-residential.jpg"
+           alt="Contemporary residential space with warm tonal palette"
+           loading="lazy">
+      <div class="lookbook__plate-meta">
+        <div class="lookbook__plate-number">03</div>
+        <h2 class="lookbook__plate-title">Warm Void</h2>
+        <p class="lookbook__plate-caption">Restraint as luxury. Space as the ultimate amenity.</p>
+      </div>
+    </section>
+
+    <!-- Diptych -->
+    <section class="lookbook__diptych" data-plate="04">
+      <div class="lookbook__diptych-panel">
+        <img src="images/textural-detail.jpg"
+             alt="Textural detail of concrete and timber joinery"
+             loading="lazy">
+        <span class="lookbook__diptych-label">Detail — 04a</span>
+      </div>
+      <div class="lookbook__diptych-panel">
+        <img src="images/natural-stone-surface.jpg"
+             alt="Natural stone surface with dramatic side lighting"
+             loading="lazy">
+        <span class="lookbook__diptych-label">Detail — 04b</span>
+      </div>
+    </section>
+
+    <!-- Plate 05 -->
+    <section class="lookbook__plate lookbook__plate--right" data-plate="05">
+      <img class="lookbook__plate-image"
+           src="images/panoramic-view.jpg"
+           alt="Panoramic view through architectural framework"
+           loading="lazy">
+      <div class="lookbook__plate-meta">
+        <div class="lookbook__plate-number">05</div>
+        <h2 class="lookbook__plate-title">Framed Horizon</h2>
+        <p class="lookbook__plate-caption">The window as aperture — a curated view of the infinite.</p>
+      </div>
+    </section>
+
+    <!-- Plate 06 -->
+    <section class="lookbook__plate" data-plate="06">
+      <img class="lookbook__plate-image"
+           src="images/evening-interior.jpg"
+           alt="Evening interior with warm ambient lighting"
+           loading="lazy">
+      <div class="lookbook__plate-meta">
+        <div class="lookbook__plate-number">06</div>
+        <h2 class="lookbook__plate-title">Golden Hour</h2>
+        <p class="lookbook__plate-caption">When daylight yields, the architecture reveals its second self.</p>
+      </div>
+    </section>
+
+    <!-- Journal -->
+    <section class="lookbook__journal" id="journal">
+      <div class="lookbook__journal-inner">
+        <h2 class="lookbook__journal-heading">Journal</h2>
+        <div class="lookbook__journal-spread">
+
+          <!-- Left: Entry list -->
+          <ul class="lookbook__journal-list">
+            <li class="lookbook__journal-entry is-active" data-journal="0">
+              <div class="lookbook__journal-entry-header">
+                <span class="lookbook__journal-date">Mar 2026</span>
+                <h3 class="lookbook__journal-title">On Silence in Spatial Design</h3>
+                <span class="lookbook__journal-tag">Essay</span>
+              </div>
+            </li>
+            <li class="lookbook__journal-entry" data-journal="1">
+              <div class="lookbook__journal-entry-header">
+                <span class="lookbook__journal-date">Feb 2026</span>
+                <h3 class="lookbook__journal-title">The Negative as Narrative</h3>
+                <span class="lookbook__journal-tag">Process</span>
+              </div>
+            </li>
+            <li class="lookbook__journal-entry" data-journal="2">
+              <div class="lookbook__journal-entry-header">
+                <span class="lookbook__journal-date">Jan 2026</span>
+                <h3 class="lookbook__journal-title">Material Conversations</h3>
+                <span class="lookbook__journal-tag">Photo</span>
+              </div>
+            </li>
+            <li class="lookbook__journal-entry" data-journal="3">
+              <div class="lookbook__journal-entry-header">
+                <span class="lookbook__journal-date">Dec 2025</span>
+                <h3 class="lookbook__journal-title">Volume III — Behind the Collection</h3>
+                <span class="lookbook__journal-tag">Behind</span>
+              </div>
+            </li>
+          </ul>
+
+          <!-- Right: Reading panel -->
+          <div class="lookbook__journal-panel has-content">
+            <button class="lookbook__journal-close" aria-label="Close panel"></button>
+
+            <div class="lookbook__journal-panel-empty">
+              <span>Select an entry to read</span>
+            </div>
+
+            <article class="lookbook__journal-content is-active" data-journal-content="0">
+              <div class="lookbook__journal-content-tag">Essay — 6 min read</div>
+              <h4 class="lookbook__journal-content-title">On Silence in Spatial Design</h4>
+              <div class="lookbook__journal-content-body">
+                <p>There is a kind of silence that only architecture can produce. Not the absence of sound, but the presence of space — unburdened, undecorated, allowed to simply exist. We have spent the past season studying this quality in the interiors we photograph.</p>
+                <p>The rooms that speak most clearly are the ones that say the least. A single chair against a plaster wall. Light moving across a floor over the course of an afternoon. These are not minimal gestures — they are maximal acts of restraint.</p>
+              </div>
+              <div class="lookbook__journal-content-footer">
+                <a href="#" class="lookbook__journal-read-more">Read full essay</a>
+                <span class="lookbook__journal-read-time">Mar 12, 2026</span>
+              </div>
+            </article>
+
+            <article class="lookbook__journal-content" data-journal-content="1">
+              <div class="lookbook__journal-content-tag">Process — 4 min read</div>
+              <h4 class="lookbook__journal-content-title">The Negative as Narrative</h4>
+              <div class="lookbook__journal-content-body">
+                <p>In photography, what you exclude defines the image more than what you include. The crop, the shadow, the out-of-focus periphery — these are not absences but active compositional choices. The negative space tells the story.</p>
+                <p>Our latest collection explores this principle across twelve interiors, each shot to emphasize what lies between the objects rather than the objects themselves.</p>
+              </div>
+              <div class="lookbook__journal-content-footer">
+                <a href="#" class="lookbook__journal-read-more">Read full article</a>
+                <span class="lookbook__journal-read-time">Feb 20, 2026</span>
+              </div>
+            </article>
+
+            <article class="lookbook__journal-content" data-journal-content="2">
+              <div class="lookbook__journal-content-tag">Photo essay — 8 min read</div>
+              <h4 class="lookbook__journal-content-title">Material Conversations</h4>
+              <div class="lookbook__journal-content-body">
+                <p>Concrete speaks to timber differently than it speaks to glass. Stone and linen share a warmth that steel and marble never will. Every material pairing is a dialogue — sometimes harmonious, sometimes deliberately tense.</p>
+                <p>This photo essay documents the material palettes of six private residences, focusing on the moments where different textures meet, overlap, and quietly negotiate their coexistence.</p>
+              </div>
+              <div class="lookbook__journal-content-footer">
+                <a href="#" class="lookbook__journal-read-more">View photo essay</a>
+                <span class="lookbook__journal-read-time">Jan 08, 2026</span>
+              </div>
+            </article>
+
+            <article class="lookbook__journal-content" data-journal-content="3">
+              <div class="lookbook__journal-content-tag">Behind the scenes — 5 min read</div>
+              <h4 class="lookbook__journal-content-title">Volume III — Behind the Collection</h4>
+              <div class="lookbook__journal-content-body">
+                <p>Every collection begins long before the first photograph is taken. Volume III started as a series of walks through unfinished buildings — concrete shells awaiting their purpose, corridors flooded with raw afternoon light.</p>
+                <p>The locations were scouted over four months across three countries. What united them was not style but atmosphere: each space possessed a quality of stillness that felt almost sacred.</p>
+              </div>
+              <div class="lookbook__journal-content-footer">
+                <a href="#" class="lookbook__journal-read-more">Read full piece</a>
+                <span class="lookbook__journal-read-time">Dec 15, 2025</span>
+              </div>
+            </article>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Closing / Contact -->
+    <section class="lookbook__close" id="contact">
+      <h2 class="lookbook__close-heading">Inquire</h2>
+      <p class="lookbook__close-text">
+        For commissions, collaborations, and private viewings —
+        we respond within twenty-four hours.
+      </p>
+      <div class="contact-form">
+        <div class="contact-form__group">
+          <label class="contact-form__label" for="cf-name">Name</label>
+          <input class="contact-form__input" type="text" id="cf-name" name="name" placeholder="Your full name" autocomplete="name">
+        </div>
+        <div class="contact-form__group">
+          <label class="contact-form__label" for="cf-email">Email</label>
+          <input class="contact-form__input" type="email" id="cf-email" name="email" placeholder="your@email.com" autocomplete="email">
+        </div>
+        <div class="contact-form__group">
+          <label class="contact-form__label" for="cf-message">Note</label>
+          <textarea class="contact-form__textarea" id="cf-message" name="message" placeholder="Tell us about your project..." rows="4"></textarea>
+        </div>
+        <button type="button" class="contact-form__submit"><span>Send Inquiry</span></button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================
+       INTERSECTION OBSERVER — Lens Reveal + Counter
+       ============================================ -->
+    <script src="tooplate-2170-aperture.js"></script>
+</body>
+</html>
